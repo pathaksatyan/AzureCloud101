@@ -1,0 +1,67 @@
+Learning objectives
+	1. Run some simple az commands
+	2. Create a virtual machine with the Azure CLI
+	3. Resize virtual machines with the Azure CLI
+	4. Install software
+
+
+
+1. Run some simple az commands
+az
+az vm list
+
+2. Create a virtual machine with the Azure CLI
+
+az vm create \
+  --resource-group [sandbox resource group name] \
+  --location westus \
+  --name SampleVM \
+  --image UbuntuLTS \
+  --admin-username azureuser \
+  --generate-ssh-keys \
+  --verbose
+
+az vm list --out list
+az vm image list --all --output table
+
+2.1 Connect to the VM with SSH
+
+ssh azureuser@<public-ip-address>
+
+3.1 Resize virtual machines with the Azure CLI
+
+az vm create \
+    --resource-group [sandbox resource group name] \
+    --name SampleVM2 \
+    --image UbuntuLTS \
+    --admin-username azureuser \
+    --generate-ssh-keys \
+    --verbose \
+    --size "Standard_DS2_v2"
+
+
+az vm list-vm-resize-options \
+    --resource-group [sandbox resource group name] \
+    --name SampleVM \
+    --output table
+
+
+az vm resize \
+    --resource-group [sandbox resource group name] \
+    --name SampleVM \
+    --size Standard_D2s_v3
+
+
+az vm list-ip-addresses -n SampleVM -o table
+
+4.1 Install a webserver
+
+run the following command to install the nginx web server
+
+sudo apt-get -y update && sudo apt-get -y install nginx
+
+curl -m 80 <PublicIPAddress>
+
+
+5.0
+Azure portal - Resource visulalizer
