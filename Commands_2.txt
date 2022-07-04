@@ -1,0 +1,29 @@
+
+1.Create a Web App in Azure portal
+
+2. Preview the web app
+
+3. Bootstrap a web app
+INSTALL .NET
+
+wget -q -O - https://dot.net/v1/dotnet-install.sh | bash -s -- --version 3.1.102
+export PATH="~/.dotnet:$PATH"
+echo "export PATH=~/.dotnet:\$PATH" >> ~/.bashrc
+
+
+2. create a new ASP.NET Core MVC application named "BestBikeApp"
+dotnet new mvc --name BestBikeApp
+
+3. Package into zip file
+cd ~/BestBikeApp
+dotnet publish -o pub
+cd pub
+zip -r site.zip *
+
+4. Deploy your package
+az webapp deployment source config-zip \
+    --src site.zip \
+    --resource-group [sandbox resource group name] \
+    --name <your-app-name>
+
+
