@@ -1,0 +1,35 @@
+Learning Objective
+
+1. Infrastruture As Code
+2. Use an ARM template to create an Azure Database for PostgreSQL - single server
+
+## ARM template is a JavaScript Object Notation (JSON) file that defines the infrastructure and configuration for your project.
+
+1. Open Cloud Shell (from the top menu) in bash
+
+2. Cloud shell needs a Storage to persist information. Use the default settings and create storage in case you don't have one already setup.
+
+3. Create a 'Resource Group', in case you don't already have one. Keep the name of your 'Resource Group' handy, you will need it in the following steps. 
+
+4. Use the following interactive code to create a new Azure Database for PostgreSQL server using the template. 
+The code prompts you for 
+	a) New DB server name	
+		Server name must be at least 3 characters and at most 63 characters. Server name must only contain lowercase letters, numbers, and hyphens
+	b) The name and location of a new resource group
+	c) Administrator account name and password
+		Username - Characters & Numbers only
+		Password - must contain characters from three of the following categories – English uppercase letters, English lowercase letters, numbers 			(0-9), and non-alphanumeric characters (!, $, #, %, etc.).
+
+Copy & Paste the below command to the prompt
+
+read -p "Enter a name for the new Azure Database for PostgreSQL server:" serverName &&
+read -p "Enter a name for the new resource group where the server will exist:" resourceGroupName &&
+read -p "Enter an Azure region (for example, centralus) for the resource group:" location &&
+read -p "Enter the Azure Database for PostgreSQL server's administrator account name:" adminUser &&
+read -p "Enter the administrator password:" adminPassword &&
+params='serverName='$serverName' administratorLogin='$adminUser' administratorLoginPassword='$adminPassword &&
+az group create --name $resourceGroupName --location $location &&
+az deployment group create --resource-group $resourceGroupName --parameters $params --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/quickstarts/microsoft.dbforpostgresql/managed-postgresql-with-vnet/azuredeploy.json &&
+read -p 
+
+"Press [ENTER] to continue: "
