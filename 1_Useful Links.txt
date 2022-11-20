@@ -1,0 +1,18 @@
+
+[GitHub]
+https://github.com/pathaksatyan/AzureCloud101/tree/IT-Filere-Cloud-Nov-2022
+
+
+[Pluralsight]
+https://www.pluralsight.com/
+	>> "Create and Manage Resource Groups in Microsoft Azure"
+	>> "Configure VMs for High Availability and Scalability on Azure"
+
+[Azure portal login]
+https://portal.azure.com
+
+[Azure pricing calculator]
+https://azure.microsoft.com/en-in/pricing/calculator/
+
+[MS Teams download]
+https://www.microsoft.com/en-us/microsoft-teams/download-app
