@@ -23,6 +23,9 @@ sudo apt-get install postgresql-client
 wget --no-check-certificate https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem
 
 <<------------------------ LAB 2 -------------------------------------->>
+Learning Objective
+1. Infrastruture As Code
+2. Use an ARM template to create an Azure Database for PostgreSQL - single server
 
 {Command to create a PostGreSql Database Server}
 
