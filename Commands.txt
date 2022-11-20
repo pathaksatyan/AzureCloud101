@@ -1,0 +1,51 @@
+<<------------------------ LAB 1 -------------------------------------->>
+{Command to create resource group}
+
+az group create --location eastus --resource-group devFxRg001
+
+[Resource Group Name]		devFxRg001
+[Virtual Machine Name]		pricingFxEastUsVm001
+[User Id]				adminUser01
+[Password]				P@ssword@123
+
+
+{Command to connect to Virtual Machine}
+
+ssh adminUser01@20.55.75.65
+	| Some command to try out |
+	apt list --installed
+	python3 --version
+
+{Command to Install PostgreSQL Client}
+
+sudo apt-get update
+sudo apt-get install postgresql-client
+wget --no-check-certificate https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem
+
+<<------------------------ LAB 2 -------------------------------------->>
+
+{Command to create a PostGreSql Database Server}
+
+read -p "Enter a name for the new resource group where the server will exist:" resourceGroupName && read -p "Enter the location for PostgreSQL server's administrator account name:" Location && az deployment group create --resource-group $resourceGroupName --template-uri https://raw.githubusercontent.com/DivyaGopinath1984/ARM-Template/main/template.json && read -p "Press [ENTER] to continue: "
+
+[Resource Group Name]		devFxRg001
+[Location Name ]			eastus
+[Pg Server Name	  ]		tradePricingDb001
+
+{Command to connect to PG Database Server from the Virtual Machine}
+psql --host=<postgreservername>.postgres.database.azure.com --port=5432 --username=testdb123@<postgreservername>  --dbname=postgres --set=sslmode=require --set=sslrootcert=DigiCertGlobalRootCA.crt.pem
+
+psql --host=tradePricingDb001.postgres.database.azure.com --port=5432 --username=testdb123@tradePricingDb001  --dbname=postgres --set=sslmode=require --set=sslrootcert=DigiCertGlobalRootCA.crt.pem
+
+[Password]			Demodb123456
+
+
+{Create Table }
+create table inventory (id serial primary key,name varchar(50),quantity integer);
+
+{Insert records to the Table}
+INSERT INTO    inventory (id,name,quantity) VALUES   (1,'Samsung',100);
+INSERT INTO    inventory (id,name,quantity) VALUES   (2,'Iphone',100);	
+
+{Query the table}
+Select * from inventory ;
